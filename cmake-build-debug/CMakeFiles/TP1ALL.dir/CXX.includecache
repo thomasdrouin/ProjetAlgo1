@@ -1,0 +1,184 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.cpp
+DonneesGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
+string
+-
+vector
+-
+map
+-
+unordered_map
+-
+unordered_set
+-
+fstream
+-
+iostream
+-
+sstream
+-
+auxiliaires.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+ligne.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
+station.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
+voyage.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h
+arret.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
+coordonnees.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.cpp
+ReseauGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
+sys/time.h
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
+DonneesGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
+graphe.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.cpp
+arret.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
+memory
+-
+auxiliaires.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.cpp
+auxiliaires.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+vector
+-
+string
+-
+fstream
+-
+iostream
+-
+sstream
+-
+time.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/time.h
+unordered_set
+-
+algorithm
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.cpp
+coordonnees.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
+cmath
+-
+exception
+-
+stdexcept
+-
+iostream
+-
+sstream
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.cpp
+graphe.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
+vector
+-
+list
+-
+set
+-
+stack
+-
+queue
+-
+limits
+-
+iostream
+-
+algorithm
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.cpp
+ligne.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
+string
+-
+vector
+-
+iostream
+-
+exception
+-
+algorithm
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/main.cpp
+iostream
+-
+DonneesGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.cpp
+station.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
+string
+-
+vector
+-
+map
+-
+unordered_set
+-
+iostream
+-
+coordonnees.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
+arret.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
+auxiliaires.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.cpp
+voyage.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h
+string
+-
+set
+-
+memory
+-
+arret.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
+auxiliaires.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
+
