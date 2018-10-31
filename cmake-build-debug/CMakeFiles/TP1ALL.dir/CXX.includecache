@@ -40,29 +40,9 @@ arret.h
 coordonnees.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
 
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.cpp
-ReseauGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
-sys/time.h
--
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
-DonneesGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
-graphe.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.cpp
-arret.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
-
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
 memory
 -
-auxiliaires.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.cpp
 auxiliaires.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
 
@@ -84,10 +64,6 @@ unordered_set
 algorithm
 -
 
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.cpp
-coordonnees.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
-
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
 cmath
 -
@@ -99,32 +75,6 @@ iostream
 -
 sstream
 -
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.cpp
-graphe.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
-vector
--
-list
--
-set
--
-stack
--
-queue
--
-limits
--
-iostream
--
-algorithm
--
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.cpp
-ligne.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
 
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
 string
@@ -144,10 +94,6 @@ iostream
 DonneesGTFS.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
 
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.cpp
-station.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
-
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
 string
 -
@@ -165,10 +111,6 @@ arret.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
 auxiliaires.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.cpp
-voyage.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h
 
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h
 string

@@ -367,7 +367,7 @@ void DonneesGTFS::traiterFichier(const std::string &p_nomFichier, void (DonneesG
     ifstream fichierAOuvrir;
     string ligneDeFichier;
 
-    fichierAOuvrir.open("../" + p_nomFichier);
+    fichierAOuvrir.open(p_nomFichier);
 
     if (!fichierAOuvrir.is_open()) {
         throw std::logic_error("Erreur lors de l'ouverture du fichier.");
