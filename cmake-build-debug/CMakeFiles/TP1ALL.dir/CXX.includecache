@@ -116,16 +116,6 @@ exception
 algorithm
 -
 
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/main.cpp
-iostream
--
-ctime
--
-DonneesGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
-ReseauGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
-
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
 string
 -
