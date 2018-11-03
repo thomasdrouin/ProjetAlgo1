@@ -57,9 +57,6 @@ ReseauGTFS::ReseauGTFS(const DonneesGTFS &p_gtfs)
 //! \brief insère les arrêts (associés aux sommets) dans m_arretDuSommet et m_sommetDeArret
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
 void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs) {
-
-    //getVoyages = map -> key=tripId, Value=voyage
-    //getArrets = std::set<Arret::Ptr, Voyage::compArret>
     for (auto itVoyages = p_gtfs.getVoyages().begin(); itVoyages != p_gtfs.getVoyages().end(); itVoyages++) {
         Arret::Ptr arretPtrPrecedent = nullptr;
         for(const auto &itArrets : itVoyages->second.getArrets()){
@@ -100,7 +97,7 @@ void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
             unsigned int ligneId1 = voyage1.getLigne();
             Ligne ligne1 = lignes[ligneId1];
             string ligneNum1 = ligne1.getNumero();
-            //on fait une map des deuxiemes arrets dont l'heure d'arrivee est plus grande que l'heure d'arrivee de l'arret 1
+            //on met dans les map les deuxiemes arrets dont l'heure d'arrivee est plus grande que l'heure d'arrivee de l'arret 1
             for (auto arret2 = lower_bound(vraieStation2.getArrets().begin(), vraieStation2.getArrets().end(), arret1);
                  arret2 != vraieStation2.getArrets().end(); arret2++) {
                 //on prend le num de ligne de l'arret 2
@@ -110,10 +107,9 @@ void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
                 Ligne ligne2 = lignes[ligneId2];
                 string ligneNum2 = ligne2.getNumero();
 
-
                 if (ligneNum1 != ligneNum2) {
                     unsigned int poids = arret2->first - arret1.first;
-                    if (poids <= minTime) {
+                    if (poids >= minTime) {
                         map_LignePoids[ligneNum2] = poids;
                         map_LigneArretPtr[ligneNum2] = arret2->second;
                     }
