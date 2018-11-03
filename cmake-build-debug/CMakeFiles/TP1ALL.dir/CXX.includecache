@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.cpp
-DonneesGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
-
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
 string
 -
@@ -39,6 +35,20 @@ arret.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
 coordonnees.h
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.cpp
+ReseauGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
+sys/time.h
+-
+tuple
+-
+
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h
+DonneesGTFS.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
+graphe.h
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
 
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h
 memory
@@ -76,6 +86,24 @@ iostream
 sstream
 -
 
+/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h
+vector
+-
+list
+-
+set
+-
+stack
+-
+queue
+-
+limits
+-
+iostream
+-
+algorithm
+-
+
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h
 string
 -
@@ -87,12 +115,6 @@ exception
 -
 algorithm
 -
-
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/main.cpp
-iostream
--
-DonneesGTFS.h
-/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h
 
 /Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h
 string

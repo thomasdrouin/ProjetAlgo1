@@ -4,6 +4,8 @@
 
 #include "ReseauGTFS.h"
 #include <sys/time.h>
+#include <tuple>
+
 
 using namespace std;
 
@@ -54,18 +56,82 @@ ReseauGTFS::ReseauGTFS(const DonneesGTFS &p_gtfs)
 //! \brief ajout des arcs dus aux voyages
 //! \brief insère les arrêts (associés aux sommets) dans m_arretDuSommet et m_sommetDeArret
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
-void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs)
-{
-    //ajouter votre code ici
+void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs) {
+
+    //getVoyages = map -> key=tripId, Value=voyage
+    //getArrets = std::set<Arret::Ptr, Voyage::compArret>
+    for (auto itVoyages = p_gtfs.getVoyages().begin(); itVoyages != p_gtfs.getVoyages().end(); itVoyages++) {
+        Arret::Ptr arretPtrPrecedent = nullptr;
+        for(const auto &itArrets : itVoyages->second.getArrets()){
+            this->m_arretDuSommet.push_back(itArrets);
+            this->m_sommetDeArret.emplace(itArrets, m_arretDuSommet.size()-1);
+            if(arretPtrPrecedent != nullptr){
+                unsigned int poids = itArrets->getHeureArrivee() - arretPtrPrecedent->getHeureArrivee();
+                m_leGraphe.ajouterArc(m_arretDuSommet.size()-2, m_arretDuSommet.size()-1, poids);
+            }
+            arretPtrPrecedent = itArrets;
+        }
+    }
 }
 
 
 //! \brief ajouts des arcs dus aux transferts entre stations
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
-void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs)
-{
-    //ajouter votre code ici
+void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
+    auto voyages = p_gtfs.getVoyages();
+    auto lignes = p_gtfs.getLignes();
+
+    for (std::tuple<unsigned int, unsigned int, unsigned int> transfertTuple : p_gtfs.getTransferts()) {
+        unsigned int station1 = get<0>(transfertTuple);
+        unsigned int station2 = get<1>(transfertTuple);
+        Station vraieStation1 = p_gtfs.getStations().find(station1)->second;
+        Station vraieStation2 = p_gtfs.getStations().find(station2)->second;
+        unsigned int minTime = get<2>(transfertTuple);
+
+
+        for (auto arret1 : vraieStation1.getArrets()) {
+            //Map contenant le poids de l'arret de la ligne contenant le plus petit poids
+            std::map<string, unsigned int> map_LignePoids;
+            //Map contenant le pointeur de l'arret de la ligne contenant le plus petit poids
+            std::map<string, Arret::Ptr> map_LigneArretPtr;
+            //on prend la ligne de l'arret 1
+            string voyageId = arret1.second->getVoyageId();
+            Voyage voyage1 = voyages[voyageId];
+            unsigned int ligneId1 = voyage1.getLigne();
+            Ligne ligne1 = lignes[ligneId1];
+            string ligneNum1 = ligne1.getNumero();
+            //on fait une map des deuxiemes arrets dont l'heure d'arrivee est plus grande que l'heure d'arrivee de l'arret 1
+            for (auto arret2 = lower_bound(vraieStation2.getArrets().begin(), vraieStation2.getArrets().end(), arret1);
+                 arret2 != vraieStation2.getArrets().end(); arret2++) {
+                //on prend le num de ligne de l'arret 2
+                string voyageId = arret2->second->getVoyageId();
+                Voyage voyage2 = voyages[voyageId];
+                unsigned int ligneId2 = voyage2.getLigne();
+                Ligne ligne2 = lignes[ligneId2];
+                string ligneNum2 = ligne2.getNumero();
+
+
+                if (ligneNum1 != ligneNum2) {
+                    unsigned int poids = arret2->first - arret1.first;
+                    if (poids <= minTime) {
+                        map_LignePoids[ligneNum2] = poids;
+                        map_LigneArretPtr[ligneNum2] = arret2->second;
+                    }
+                }
+            }
+            for (auto itLignePoids = map_LignePoids.begin();
+                 itLignePoids != map_LignePoids.end(); itLignePoids++) {
+                string ligneId2 = itLignePoids->first;
+                unsigned int poids = itLignePoids->second;
+                Arret::Ptr arret2 = map_LigneArretPtr[ligneId2];
+                m_leGraphe.ajouterArc(m_sommetDeArret[arret1.second],
+                                      m_sommetDeArret[arret2],
+                                      poids);
+            }
+        }
+    }
 }
+
 
 //! \brief ajoute des arcs au réseau GTFS à partir des données GTFS
 //! \brief Il s'agit des arcs allant du point origine vers une station si celle-ci est accessible à pieds et des arcs allant d'une station vers le point destination
