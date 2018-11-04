@@ -75,8 +75,6 @@ void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs) {
 //! \brief ajouts des arcs dus aux transferts entre stations
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
 void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
-    auto voyages = p_gtfs.getVoyages();
-    auto lignes = p_gtfs.getLignes();
 
     for (std::tuple<unsigned int, unsigned int, unsigned int> transfertTuple : p_gtfs.getTransferts()) {
         unsigned int station1 = get<0>(transfertTuple);
@@ -93,27 +91,37 @@ void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
             std::map<string, Arret::Ptr> map_LigneArretPtr;
             //on prend la ligne de l'arret 1
             string voyageId = arret1.second->getVoyageId();
-            Voyage voyage1 = voyages[voyageId];
+            Voyage voyage1 = p_gtfs.getVoyages().at(voyageId);
             unsigned int ligneId1 = voyage1.getLigne();
-            Ligne ligne1 = lignes[ligneId1];
+            Ligne ligne1 = p_gtfs.getLignes().at(ligneId1);
             string ligneNum1 = ligne1.getNumero();
             //on met dans les map les deuxiemes arrets dont l'heure d'arrivee est plus grande que l'heure d'arrivee de l'arret 1
             for (auto arret2 = lower_bound(vraieStation2.getArrets().begin(), vraieStation2.getArrets().end(), arret1);
                  arret2 != vraieStation2.getArrets().end(); arret2++) {
                 //on prend le num de ligne de l'arret 2
                 string voyageId = arret2->second->getVoyageId();
-                Voyage voyage2 = voyages[voyageId];
+                Voyage voyage2 = p_gtfs.getVoyages().at(voyageId);
                 unsigned int ligneId2 = voyage2.getLigne();
-                Ligne ligne2 = lignes[ligneId2];
+                Ligne ligne2 = p_gtfs.getLignes().at(ligneId2);
                 string ligneNum2 = ligne2.getNumero();
 
                 if (ligneNum1 != ligneNum2) {
                     unsigned int poidsSecondes = arret2->first - arret1.first;
                     if (poidsSecondes >= minTime) {
-                        map_LignePoids[ligneNum2] = poidsSecondes;
-                        map_LigneArretPtr[ligneNum2] = arret2->second;
+                        if(map_LignePoids.find(ligneNum2) != map_LignePoids.end()){
+                            unsigned int poidsLigneActuelle = map_LignePoids[ligneNum2];
+                            if(poidsSecondes < poidsLigneActuelle){
+                                map_LignePoids[ligneNum2] = poidsSecondes;
+                                map_LigneArretPtr[ligneNum2] = arret2->second;
+                            }
+                        }
+                        else{
+                            map_LignePoids[ligneNum2] = poidsSecondes;
+                            map_LigneArretPtr[ligneNum2] = arret2->second;
+                        }
                     }
                 }
+
             }
             for (auto itLignePoids = map_LignePoids.begin();
                  itLignePoids != map_LignePoids.end(); itLignePoids++) {
@@ -141,8 +149,6 @@ void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
 void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const Coordonnees &p_pointOrigine,
                                                const Coordonnees &p_pointDestination)
 {
-    auto voyages = p_gtfs.getVoyages();
-    auto lignes = p_gtfs.getLignes();
     Heure heure = Heure();
     string voyageId = "VoyageId";
     unsigned int numSequence = 1;
@@ -156,20 +162,20 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
     this->m_sommetDeArret.emplace(arretPtrDestination, m_sommetDestination);
 
     m_leGraphe.resize(m_leGraphe.getNbSommets()+2);
-
     //map getstation = <idStation, Station>
     vector<pair<Station, unsigned int>> vector_Origine_StationPotentiellePoids;
     vector<pair<Station, unsigned int>> vector_Destination_StationPotentiellePoids;
     for(auto itStation = p_gtfs.getStations().begin(); itStation != p_gtfs.getStations().end(); itStation++){
         Coordonnees coordsStation = itStation->second.getCoords();
         double distanceMarcheOrigine = p_pointOrigine - coordsStation;
-        double distanceMarcheDestination = p_pointDestination - coordsStation;
+        double distanceMarcheDestination = coordsStation - p_pointDestination;
         if(distanceMarcheOrigine <= distanceMaxMarche){
             unsigned int poidsSecondes = distanceMarcheOrigine/vitesseDeMarche*3600;
             vector_Origine_StationPotentiellePoids.push_back(make_pair(itStation->second, poidsSecondes));
         }
         if(distanceMarcheDestination <= distanceMaxMarche){
-            unsigned int poidsSecondes = distanceMarcheOrigine/vitesseDeMarche*3600;
+            //TODO LIGNE A CHANGER???
+            unsigned int poidsSecondes = distanceMarcheDestination/vitesseDeMarche*3600;
             vector_Destination_StationPotentiellePoids.push_back(make_pair(itStation->second, poidsSecondes));
         }
     }
@@ -187,12 +193,21 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
             Arret::Ptr arretPtr = itMapHeureArriveeArret->second;
             if (p_gtfs.getTempsDebut().add_secondes(poidsSecondesToStation) <= arretPtr->getHeureArrivee()) {
                 string voyageId = arretPtr->getVoyageId();
-                Voyage voyage = voyages[voyageId];
+                Voyage voyage = p_gtfs.getVoyages().at(voyageId);
                 unsigned int ligneId = voyage.getLigne();
-                Ligne ligne = lignes[ligneId];
+                Ligne ligne = p_gtfs.getLignes().at(ligneId);
                 string ligneNum = ligne.getNumero();
-                map_LignePoids[ligneNum] = poidsSecondesToStation;
-                map_LigneArretPtr[ligneNum] = arretPtr;
+                if(map_LignePoids.find(ligneNum) != map_LignePoids.end()){
+                    unsigned int poidsLigneActuelle = map_LignePoids[ligneNum];
+                    if(poidsSecondesToStation < poidsLigneActuelle){
+                        map_LignePoids[ligneNum] = poidsSecondesToStation;
+                        map_LigneArretPtr[ligneNum] = arretPtr;
+                    }
+                }
+                else{
+                    map_LignePoids[ligneNum] = poidsSecondesToStation;
+                    map_LigneArretPtr[ligneNum] = arretPtr;
+                }
             }
         }
         for (auto itLignePoids = map_LignePoids.begin();itLignePoids != map_LignePoids.end(); itLignePoids++) {
@@ -213,6 +228,7 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
             m_leGraphe.ajouterArc(m_sommetDeArret[itHeureArret->second],
                                   m_sommetDestination,
                                   poidsSecondesToDestination);
+
             m_sommetsVersDestination.push_back(m_sommetDeArret[itHeureArret->second]);
             m_nbArcsStationsVersDestination++;
         }
