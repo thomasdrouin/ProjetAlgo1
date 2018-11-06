@@ -84,6 +84,8 @@ void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
         unsigned int minTime = get<2>(transfertTuple);
 
 
+
+
         for (auto arret1 : vraieStation1.getArrets()) {
             //Map contenant le poids de l'arret de la ligne contenant le plus petit poids
             std::map<string, unsigned int> map_LignePoids;
@@ -181,8 +183,8 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
     }
     for(auto pairStationPoids : vector_Origine_StationPotentiellePoids){
         Station station = pairStationPoids.first;
-        unsigned int poidsSecondesToStation = pairStationPoids.second;
-        Heure heureArriveeStation = p_gtfs.getTempsDebut().add_secondes(poidsSecondesToStation);
+        unsigned int secondesToStation = pairStationPoids.second;
+        Heure heureArriveeStation = p_gtfs.getTempsDebut().add_secondes(secondesToStation);
         //Map contenant le poids de l'arret de la ligne contenant le plus petit poids
         std::map<string, unsigned int> map_LignePoids;
         //Map contenant le pointeur de l'arret de la ligne contenant le plus petit poids
@@ -191,21 +193,22 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
         for (   auto itMapHeureArriveeArret = lower_bound(station.getArrets().begin(), station.getArrets().end(), *premierArretPotentiel);
                 itMapHeureArriveeArret != station.getArrets().end(); itMapHeureArriveeArret++) {
             Arret::Ptr arretPtr = itMapHeureArriveeArret->second;
-            if (p_gtfs.getTempsDebut().add_secondes(poidsSecondesToStation) <= arretPtr->getHeureArrivee()) {
+            if (p_gtfs.getTempsDebut().add_secondes(secondesToStation) <= arretPtr->getHeureArrivee()) {
                 string voyageId = arretPtr->getVoyageId();
                 Voyage voyage = p_gtfs.getVoyages().at(voyageId);
                 unsigned int ligneId = voyage.getLigne();
                 Ligne ligne = p_gtfs.getLignes().at(ligneId);
                 string ligneNum = ligne.getNumero();
+                unsigned int poidsHeureArrivee = arretPtr->getHeureArrivee() - p_gtfs.getTempsDebut();
                 if(map_LignePoids.find(ligneNum) != map_LignePoids.end()){
                     unsigned int poidsLigneActuelle = map_LignePoids[ligneNum];
-                    if(poidsSecondesToStation < poidsLigneActuelle){
-                        map_LignePoids[ligneNum] = poidsSecondesToStation;
+                    if(poidsHeureArrivee < poidsLigneActuelle){
+                        map_LignePoids[ligneNum] = secondesToStation;
                         map_LigneArretPtr[ligneNum] = arretPtr;
                     }
                 }
                 else{
-                    map_LignePoids[ligneNum] = poidsSecondesToStation;
+                    map_LignePoids[ligneNum] = poidsHeureArrivee;
                     map_LigneArretPtr[ligneNum] = arretPtr;
                 }
             }
@@ -222,9 +225,9 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
     }
     for(auto pairStationPoids : vector_Destination_StationPotentiellePoids){
         Station station = pairStationPoids.first;
-        unsigned int poidsSecondesToDestination = pairStationPoids.second;
         for (   auto itHeureArret = station.getArrets().begin(); itHeureArret != station.getArrets().end(); itHeureArret++){
             Arret::Ptr arretPtr = itHeureArret->second;
+            unsigned int poidsSecondesToDestination = pairStationPoids.second;
             m_leGraphe.ajouterArc(m_sommetDeArret[itHeureArret->second],
                                   m_sommetDestination,
                                   poidsSecondesToDestination);
