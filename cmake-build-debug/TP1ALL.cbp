@@ -186,9 +186,6 @@
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/main.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/out.txt">
-			<Option target="TP1ALL"/>
-		</Unit>
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
@@ -201,16 +198,7 @@
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/TP1.pdf">
-			<Option target="TP1ALL"/>
-		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/TP2.pdf">
-			<Option target="TP1ALL"/>
-		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/out.txt">
-			<Option target="TP1ALL"/>
-		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/out2.txt">
+		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/outDeBase.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/CMakeLists.txt">

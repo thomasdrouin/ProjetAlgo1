@@ -117,65 +117,65 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
 {
     if (p_origine >= m_listesAdj.size() || p_destination >= m_listesAdj.size())
         throw logic_error("Graphe::dijkstra(): p_origine ou p_destination n'existe pas");
-    
+
     p_chemin.clear();
-    
+
     if (p_origine == p_destination)
     {
         p_chemin.push_back(p_destination);
         return 0;
     }
+
     vector<unsigned int> distance(m_listesAdj.size(), numeric_limits<unsigned int>::max());
     vector<size_t> predecesseur(m_listesAdj.size(), numeric_limits<size_t>::max());
+
+    //multimap de toutes les distances et du sommet actuel
+    multimap<unsigned int, size_t> mapDistanceNoeud ;
+
+    //distance de depart
     distance[p_origine] = 0;
-    
-    list<size_t> q; //ensemble des noeuds non solutionnés;
-    for (size_t i = 0; i < m_listesAdj.size(); ++i) //construction de q
+
+    //On met la distance 0 de depart avec le point d'origine
+    mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));//change if possible
+
+    size_t sommet;
+    unsigned int plusPetiteDistanceTrouvee;
+
+    //Tant que notre map distance Noaud n'est pas vide
+    while (!mapDistanceNoeud.empty())
     {
-        q.push_back(i);
-    }
-    
-    //Boucle principale: touver distance[] et predecesseur[]
-    while (!q.empty())
-    {
-        //trouver uStar dans q tel que distance[uStar] est minimal
-        list<size_t>::iterator uStar_itr = q.end();
-        unsigned int min = numeric_limits<unsigned int>::max();
-        for (auto itr = q.begin(); itr != q.end(); ++itr)
+        //on itere sur la map des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
+        //ici, on sort le sommet de la map avant de peut-etre l'effacer
+        sommet = mapDistanceNoeud.begin()->second;
+
+        //si le sommet actuel correspond a la destination, on peut arreter
+        if (sommet == p_destination) break;
+
+        //on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
+        //mais l'info est encore dans sommet
+        mapDistanceNoeud.erase(mapDistanceNoeud.begin());
+
+        //on itere grace a la liste d'adjacence du noeud actuel
+        //m_listesAdj est un vector<list<Arc>>, donc on itere sur des arcs non
+
+         for (auto u_itr = m_listesAdj[sommet].begin(); u_itr != m_listesAdj[sommet].end(); ++u_itr)
         {
-            if (distance[*itr] < min)
+            plusPetiteDistanceTrouvee = distance[sommet] + u_itr->poids;
+            if (plusPetiteDistanceTrouvee < distance[u_itr->destination])
             {
-                min = distance[*itr];
-                uStar_itr = itr;
-            }
-        }
-        if (uStar_itr == q.end()) break; //quitter la boucle : il est impossible de se rendre à destination
-        
-        size_t uStar = *uStar_itr; //le noeud solutionné
-        q.erase(uStar_itr); //l'enlevé de q
-        
-        if (uStar == p_destination) break; //car on a obtenu distance[p_destination] et predecesseur[p_destination]
-        
-        //relâcher les arcs sortant de uStar
-        for (auto u_itr = m_listesAdj[uStar].begin(); u_itr != m_listesAdj[uStar].end(); ++u_itr)
-        {
-            unsigned int temp = distance[uStar] + u_itr->poids;
-            if (temp < distance[u_itr->destination])
-            {
-                distance[u_itr->destination] = temp;
-                predecesseur[u_itr->destination] = uStar;
+                distance[u_itr->destination] = plusPetiteDistanceTrouvee;
+                predecesseur[u_itr->destination] = sommet;
+                mapDistanceNoeud.insert(pair<unsigned int , size_t>(plusPetiteDistanceTrouvee,u_itr->destination));
             }
         }
     }
-    
     //cas où l'on n'a pas de solution
     if (predecesseur[p_destination] == numeric_limits<unsigned int>::max())
     {
         p_chemin.push_back(p_destination);
         return numeric_limits<unsigned int>::max();
     }
-    
-    //On a une solution, donc construire le plus court chemin à l'aide de predecesseur[]
+
     stack<size_t> pileDuChemin;
     size_t numero = p_destination;
     pileDuChemin.push(numero);
@@ -193,4 +193,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     return distance[p_destination];
 }
 
-
+bool Graphe::compare_nocase (const Arc& first, const Arc& second)
+{
+    return (first.poids < second.poids);
+}

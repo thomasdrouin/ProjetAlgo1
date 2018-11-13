@@ -12,8 +12,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79991646-a31c-41cf-9033-d66a23281c9b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/outDeBase.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outDijkstra" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outDijkstraSortedAdjList" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources fournies/graphe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources fournies/graphe.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources fournies/graphe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sources fournies/graphe.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources fournies/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sources fournies/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources fournies/out.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TP1ALL.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TP1ALL.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/TP1ALL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/TP1ALL.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/TP1ALL.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out2.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,21 +54,23 @@
           <entry key="__string" value="1" />
           <entry key="__tree" value="1" />
           <entry key="algorithm" value="1" />
-          <entry key="cpp" value="26" />
-          <entry key="h" value="19" />
+          <entry key="cpp" value="33" />
+          <entry key="h" value="21" />
           <entry key="list" value="1" />
           <entry key="map" value="1" />
           <entry key="memory" value="6" />
+          <entry key="outDijkstraSortedAdjList" value="1" />
+          <entry key="outSortedAdjacencyList" value="1" />
           <entry key="string" value="1" />
-          <entry key="txt" value="1" />
+          <entry key="txt" value="4" />
           <entry key="unordered_map" value="3" />
           <entry key="utility" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="ObjectiveC" value="61" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="ObjectiveC" value="70" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -64,14 +81,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="6179" />
+          <entry key="Doxygen file" value="1" />
+          <entry key="ObjectiveC" value="8526" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="5858" />
-          <entry key="h" value="3" />
+          <entry key="cpp" value="8086" />
+          <entry key="h" value="123" />
           <entry key="mm" value="318" />
         </counts>
       </usages-collector>
@@ -82,68 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources fournies/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="198" selection-start-line="198" selection-end-line="198" />
-              <folding>
-                <element signature="e#49#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/station.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="78" column="49" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/DonneesGTFS.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4575">
-              <caret line="305" column="21" selection-start-line="305" selection-start-column="21" selection-end-line="305" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/DonneesGTFS.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1065">
-              <caret line="71" column="17" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="17" />
-              <folding>
-                <element signature="e#88#105#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/string">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53340">
-              <caret line="3556" selection-start-line="3556" selection-end-line="3556" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/arret.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="150">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -151,29 +109,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="222">
+              <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/arret.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="109" selection-start-line="109" selection-end-line="109" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/outDijkstraSortedAdjList">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.h">
+        <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#100#124#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="231">
+              <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -191,6 +151,7 @@
       <find>tuple</find>
       <find>resize</find>
       <find>gets</find>
+      <find>arc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,8 +167,12 @@
       <list>
         <option value="$PROJECT_DIR$/Sources fournies/DonneesGTFS.cpp" />
         <option value="$PROJECT_DIR$/Sources fournies/ReseauGTFS.h" />
-        <option value="$PROJECT_DIR$/Sources fournies/main.cpp" />
         <option value="$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp" />
+        <option value="$PROJECT_DIR$/out.txt" />
+        <option value="$PROJECT_DIR$/Sources fournies/graphe.h" />
+        <option value="$PROJECT_DIR$/outSortedAdjacencyList" />
+        <option value="$PROJECT_DIR$/Sources fournies/main.cpp" />
+        <option value="$PROJECT_DIR$/Sources fournies/graphe.cpp" />
       </list>
     </option>
   </component>
@@ -230,22 +195,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="TP1ALL" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="TP1ALL" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="Sources fournies" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -266,12 +215,33 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="TP1ALL" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="TP1ALL" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Sources fournies" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -318,7 +288,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75394000" />
+    <option name="totallyTimeSpent" value="94226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -330,16 +300,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="896" extended-state="6" />
+    <frame x="-226" y="-1200" width="1920" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18597998" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1826411" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329602" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.329602" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4985694" weight="0.41417912" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32942238" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.32942238" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4985694" weight="0.4133574" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329602" />
@@ -385,28 +355,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Sources fournies/graphe.cpp</url>
-          <line>117</line>
-          <option name="timeStamp" value="207" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Sources fournies/graphe.cpp</url>
-          <line>138</line>
-          <option name="timeStamp" value="242" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Sources fournies/graphe.cpp</url>
-          <line>151</line>
-          <option name="timeStamp" value="243" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Sources fournies/graphe.cpp</url>
-          <line>162</line>
-          <option name="timeStamp" value="245" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -529,11 +477,10 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-693301" />
+        <state relative-caret-position="223">
+          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+        </state>
       </provider>
     </entry>
     <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/__string">
@@ -613,13 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources fournies/station.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -631,13 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="215" column="25" selection-start-line="215" selection-start-column="13" selection-end-line="215" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources fournies/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -672,27 +605,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources fournies/arret.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1635">
           <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#100#124#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -703,13 +619,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#100#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/out3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/out.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outDijkstra">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outDeBase.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outDijkstraSortedAdjList">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources fournies/graphe.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sources fournies/ReseauGTFS.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-          <folding>
-            <element signature="e#49#72#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="260">
+          <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
         </state>
       </provider>
     </entry>

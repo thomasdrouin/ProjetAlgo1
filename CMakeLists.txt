@@ -38,14 +38,10 @@ add_executable(TP1ALL
         "Sources fournies/ligne.cpp"
         "Sources fournies/ligne.h"
         "Sources fournies/main.cpp"
-        "Sources fournies/out.txt"
         "Sources fournies/ReseauGTFS.cpp"
         "Sources fournies/ReseauGTFS.h"
         "Sources fournies/station.cpp"
         "Sources fournies/station.h"
         "Sources fournies/voyage.cpp"
         "Sources fournies/voyage.h"
-        out.txt
-        out2.txt
-        TP1.pdf
-        TP2.pdf)
+        )

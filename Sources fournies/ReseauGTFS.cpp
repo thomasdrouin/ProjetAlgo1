@@ -4,8 +4,6 @@
 
 #include "ReseauGTFS.h"
 #include <sys/time.h>
-#include <tuple>
-
 
 using namespace std;
 
@@ -56,107 +54,77 @@ ReseauGTFS::ReseauGTFS(const DonneesGTFS &p_gtfs)
 //! \brief ajout des arcs dus aux voyages
 //! \brief insère les arrêts (associés aux sommets) dans m_arretDuSommet et m_sommetDeArret
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
-void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs) {
+void ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs)
+{
     try {
-        //Pour tous les voyages de GTFS
-        for (auto itVoyages = p_gtfs.getVoyages().begin(); itVoyages != p_gtfs.getVoyages().end(); itVoyages++) {
-            Arret::Ptr arretPtrPrecedent = nullptr;
-            //Pour tous les arrets d'un voyage
-            for (const auto &itArrets : itVoyages->second.getArrets()) {
-                //On ajoute l'arret present dans m_arretDuSommet et m_sommetDeArret en commencant a 0
-                this->m_arretDuSommet.push_back(itArrets);
-                this->m_sommetDeArret.emplace(itArrets, m_arretDuSommet.size() - 1);
-                //Si pas le premier arret, ajouter l'arc qui relie le sommet precedant au sommet present
-                if (arretPtrPrecedent != nullptr) {
-                    unsigned int poidsSecondes = itArrets->getHeureArrivee() - arretPtrPrecedent->getHeureArrivee();
-                    m_leGraphe.ajouterArc(m_arretDuSommet.size() - 2, m_arretDuSommet.size() - 1, poidsSecondes);
+        std::map<std::string, Voyage> voyages = p_gtfs.getVoyages();
+        unsigned int poids;
+        size_t i = 0;
+        for (auto &itr:voyages) {
+            auto arrets = itr.second.getArrets();
+            for (auto &itrArret:arrets) {
+                m_arretDuSommet.push_back(itrArret);
+                m_sommetDeArret.emplace(itrArret, i);
+                if (itrArret != *arrets.begin()) {
+                    poids = itrArret->getHeureArrivee() - m_arretDuSommet[i - 1]->getHeureArrivee();
+                    m_leGraphe.ajouterArc(i - 1, i, poids);
                 }
-                arretPtrPrecedent = itArrets;
+                i++;
             }
         }
     }
-    catch (...){
-        throw logic_error(
-                "ReseauGTFS::ajouterArcsVoyages(): une erreur s'est produite.");
+    catch (exception e){
+        throw logic_error("ReseauGTFS::ajouterArcsVoyages(const DonneesGTFS & p_gtfs): Incohérence détectée.");
     }
 }
 
 
 //! \brief ajouts des arcs dus aux transferts entre stations
 //! \throws logic_error si une incohérence est détecté lors de cette étape de construction du graphe
-void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs) {
-    try{
-        for (std::tuple<unsigned int, unsigned int, unsigned int> transfertTuple : p_gtfs.getTransferts()) {
-            unsigned int stationID1 = get<0>(transfertTuple);
-            unsigned int stationID2 = get<1>(transfertTuple);
-            Station station1 = p_gtfs.getStations().find(stationID1)->second;
-            Station station2 = p_gtfs.getStations().find(stationID2)->second;
-            unsigned int tempsEntre2Stations = get<2>(transfertTuple);
+void ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs)
+{
+    try {
+        auto transferts = p_gtfs.getTransferts();
+        auto stations = p_gtfs.getStations();
+        auto voyages = p_gtfs.getVoyages();
+        for (auto &transfert:transferts) {
+            unsigned int id_station1 = std::get<0>(transfert);
+            Station station1 = stations.at(id_station1);
+            unsigned int id_station2 = std::get<1>(transfert);
+            Station station2 = stations.at(id_station2);
+            unsigned int temps_minimal = std::get<2>(transfert);
+            auto arretsStation1 = station1.getArrets();
+            auto arretsStation2 = station2.getArrets();
+            for (auto &arret1:arretsStation1) {
+                size_t i = m_sommetDeArret.at(arret1.second);
 
-            //Pour chaque arret pour la premiere station
-            for (auto arret1 : station1.getArrets()) {
-                //Map contenant le poids de l'arret de la ligne contenant le plus petit poids
-                std::map<string, unsigned int> map_LignePoids;
-                //Map contenant le pointeur de l'arret de la ligne contenant le plus petit poids
-                std::map<string, Arret::Ptr> map_LigneArretPtr;
+                std::set<std::string> lignes_ajoutees;
+                std::string id = arret1.second->getVoyageId();
 
-                //on prend la ligne de l'arret 1
-                string voyageId = arret1.second->getVoyageId();
-                Voyage voyage1 = p_gtfs.getVoyages().at(voyageId);
-                unsigned int ligneId1 = voyage1.getLigne();
-                Ligne ligne1 = p_gtfs.getLignes().at(ligneId1);
-                string ligneNum1 = ligne1.getNumero();
+                auto ligne1_id = voyages.at(id).getLigne();
+                auto ligne1 = p_gtfs.getLignes().at(ligne1_id).getNumero();
+                lignes_ajoutees.emplace(ligne1);
+                for (auto arret2 = arretsStation2.lower_bound(arret1.first); arret2 != arretsStation2.end(); ++arret2) {
+                    string id2 = arret2->second->getVoyageId();
+                    auto ligne2_id = voyages.at(id2).getLigne();
+                    auto ligne2 = p_gtfs.getLignes().at(ligne2_id).getNumero();
+                    unsigned int poids = arret2->first - arret1.first;
+                    if (temps_minimal <= poids) {
+                        auto res = lignes_ajoutees.emplace(ligne2);
+                        if (res.second) {
+                            size_t j = m_sommetDeArret.at(arret2->second);
 
-                //on met dans les map les arrets de la station 2 dont l'heure d'arrivee est plus grande que l'heure d'arrivee de l'arret 1
-                for (auto arret2 = lower_bound(station2.getArrets().begin(), station2.getArrets().end(), arret1);
-                     arret2 != station2.getArrets().end(); arret2++) {
-
-                    //on prend le num de ligne de l'arret 2
-                    string voyageId = arret2->second->getVoyageId();
-                    Voyage voyage2 = p_gtfs.getVoyages().at(voyageId);
-                    unsigned int ligneId2 = voyage2.getLigne();
-                    Ligne ligne2 = p_gtfs.getLignes().at(ligneId2);
-                    string ligneNum2 = ligne2.getNumero();
-
-                    //on regarde si pas la meme ligne pour arret 1 et 2
-                    if (ligneNum1 != ligneNum2) {
-
-                        unsigned int tempsPourAllerDunArretAlautre = arret2->first - arret1.first;
-                        if (tempsPourAllerDunArretAlautre >= tempsEntre2Stations) {
-                            //Si pas de poids stocke avec cette ligne
-                            if(map_LignePoids.find(ligneNum2) != map_LignePoids.end()){
-                                unsigned int tempsMinimalPourLaLigne = map_LignePoids[ligneNum2];
-                                if(tempsPourAllerDunArretAlautre < tempsMinimalPourLaLigne){
-                                    map_LignePoids[ligneNum2] = tempsPourAllerDunArretAlautre;
-                                    map_LigneArretPtr[ligneNum2] = arret2->second;
-                                }
-                            }
-                            else{
-                                map_LignePoids[ligneNum2] = tempsPourAllerDunArretAlautre;
-                                map_LigneArretPtr[ligneNum2] = arret2->second;
-                            }
+                            m_leGraphe.ajouterArc(i, j, poids);
                         }
                     }
-
-                }
-                for (auto itLignePoids = map_LignePoids.begin();
-                     itLignePoids != map_LignePoids.end(); itLignePoids++) {
-                    string ligneId2 = itLignePoids->first;
-                    unsigned int poidsSecondes = itLignePoids->second;
-                    Arret::Ptr arret2 = map_LigneArretPtr[ligneId2];
-                    m_leGraphe.ajouterArc(m_sommetDeArret[arret1.second],
-                                          m_sommetDeArret[arret2],
-                                          poidsSecondes);
                 }
             }
         }
     }
-    catch(...){
-        throw logic_error(
-                "ReseauGTFS::ajouterArcsTransferts(): une erreur s'est produite.");
+    catch(exception e){
+        throw logic_error("ReseauGTFS::ajouterArcsTransferts(const DonneesGTFS & p_gtfs): Incohérence détectée.");
     }
 }
-
 
 //! \brief ajoute des arcs au réseau GTFS à partir des données GTFS
 //! \brief Il s'agit des arcs allant du point origine vers une station si celle-ci est accessible à pieds et des arcs allant d'une station vers le point destination
@@ -171,95 +139,63 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
                                                const Coordonnees &p_pointDestination)
 {
     try{
-        Heure heure = Heure();
-        string voyageId = "VoyageId";
-        unsigned int numSequence = 1;
-        shared_ptr<Arret> arretPtrOrigine = make_shared<Arret>(this->stationIdOrigine, heure, heure, numSequence, voyageId);
-        shared_ptr<Arret> arretPtrDestination = make_shared<Arret>(this->stationIdDestination, heure, heure, numSequence, voyageId);
-        this->m_sommetOrigine = m_leGraphe.getNbSommets();
-        this->m_sommetDestination = m_leGraphe.getNbSommets()+1;
-        this->m_arretDuSommet.push_back(arretPtrOrigine);
-        this->m_arretDuSommet.push_back(arretPtrDestination);
-        this->m_sommetDeArret.emplace(arretPtrOrigine, m_sommetOrigine);
-        this->m_sommetDeArret.emplace(arretPtrDestination, m_sommetDestination);
+        Arret::Ptr arretOrigine = make_shared<Arret>(stationIdOrigine, Heure(6,0,0), Heure(6,0,0), 1, "1");
+        Arret::Ptr arretDestination = make_shared<Arret>(stationIdDestination, Heure(6,0,0), Heure(6,0,0),1,"1");
+        size_t i = m_arretDuSommet.size();
+        m_arretDuSommet.push_back(arretOrigine);
+        m_sommetDeArret.emplace(arretOrigine, i);
+        m_sommetOrigine = i;
+        ++i;
+        m_arretDuSommet.push_back(arretDestination);
+        m_sommetDeArret.emplace(arretDestination, i);
+        m_sommetDestination = i;
 
-        m_leGraphe.resize(m_leGraphe.getNbSommets()+2);
-        //map getstation = <idStation, Station>
-        vector<pair<Station, unsigned int>> vector_Origine_StationPotentiellePoids;
-        vector<pair<Station, unsigned int>> vector_Destination_StationPotentiellePoids;
-        for(auto itStation = p_gtfs.getStations().begin(); itStation != p_gtfs.getStations().end(); itStation++){
-            Coordonnees coordsStation = itStation->second.getCoords();
-            double distanceMarcheOrigine = p_pointOrigine - coordsStation;
-            double distanceMarcheDestination = coordsStation - p_pointDestination;
-            if(distanceMarcheOrigine <= distanceMaxMarche){
-                unsigned int poidsSecondes = distanceMarcheOrigine/vitesseDeMarche*3600;
-                vector_Origine_StationPotentiellePoids.push_back(make_pair(itStation->second, poidsSecondes));
-            }
-            if(distanceMarcheDestination <= distanceMaxMarche){
-                unsigned int poidsSecondes = distanceMarcheDestination/vitesseDeMarche*3600;
-                vector_Destination_StationPotentiellePoids.push_back(make_pair(itStation->second, poidsSecondes));
-            }
-        }
-        for(auto pairStationPoids : vector_Origine_StationPotentiellePoids){
-            Station station = pairStationPoids.first;
-            unsigned int secondesToStation = pairStationPoids.second;
-            Heure heureArriveeStation = p_gtfs.getTempsDebut().add_secondes(secondesToStation);
-            //Map contenant le poids de l'arret de la ligne contenant le plus petit poids
-            std::map<string, unsigned int> map_LignePoids;
-            //Map contenant le pointeur de l'arret de la ligne contenant le plus petit poids
-            std::map<string, Arret::Ptr> map_LigneArretPtr;
-            auto premierArretPotentiel = station.getArrets().lower_bound(heureArriveeStation);
-            for (   auto itMapHeureArriveeArret = lower_bound(station.getArrets().begin(), station.getArrets().end(), *premierArretPotentiel);
-                    itMapHeureArriveeArret != station.getArrets().end(); itMapHeureArriveeArret++) {
-                Arret::Ptr arretPtr = itMapHeureArriveeArret->second;
-                if (p_gtfs.getTempsDebut().add_secondes(secondesToStation) <= arretPtr->getHeureArrivee()) {
-                    string voyageId = arretPtr->getVoyageId();
-                    Voyage voyage = p_gtfs.getVoyages().at(voyageId);
-                    unsigned int ligneId = voyage.getLigne();
-                    Ligne ligne = p_gtfs.getLignes().at(ligneId);
-                    string ligneNum = ligne.getNumero();
-                    unsigned int poidsHeureArrivee = arretPtr->getHeureArrivee() - p_gtfs.getTempsDebut();
-                    if(map_LignePoids.find(ligneNum) != map_LignePoids.end()){
-                        unsigned int poidsLigneActuelle = map_LignePoids[ligneNum];
-                        if(poidsHeureArrivee < poidsLigneActuelle){
-                            map_LignePoids[ligneNum] = secondesToStation;
-                            map_LigneArretPtr[ligneNum] = arretPtr;
+
+        m_leGraphe.resize(m_arretDuSommet.size());
+        Heure heureDepart = p_gtfs.getTempsDebut();
+        auto stations = p_gtfs.getStations();
+        auto voyages = p_gtfs.getVoyages();
+
+        m_nbArcsStationsVersDestination = 0;
+        m_nbArcsOrigineVersStations = 0;
+        for(auto &station:stations){
+            Coordonnees coord = station.second.getCoords();
+            double distanceOrigine = coord - p_pointOrigine;
+            double distanceDestination = coord - p_pointDestination;
+            auto arrets = station.second.getArrets();
+
+            set<string> lignesOrigineAjoutees;
+
+            for(auto arret = arrets.lower_bound(p_gtfs.getTempsDebut());arret != arrets.end(); ++arret){
+                size_t j = m_sommetDeArret.at(arret->second);
+                if(distanceOrigine <= distanceMaxMarche){
+                    double tempsMarcheOrigine = distanceOrigine / vitesseDeMarche * 3600;
+                    unsigned int poids = arret->first - p_gtfs.getTempsDebut();
+                    if(tempsMarcheOrigine <= poids){
+                        auto ligne_id = voyages.at(arret->second->getVoyageId()).getLigne();
+                        auto ligne = p_gtfs.getLignes().at(ligne_id).getNumero();
+                        if(lignesOrigineAjoutees.emplace(ligne).second) {
+                            m_leGraphe.ajouterArc(m_sommetOrigine, j, poids);
+                            m_nbArcsOrigineVersStations++;
                         }
                     }
-                    else{
-                        map_LignePoids[ligneNum] = poidsHeureArrivee;
-                        map_LigneArretPtr[ligneNum] = arretPtr;
-                    }
+                }
+                if(distanceDestination <= distanceMaxMarche){
+                    auto ligne2_id = voyages.at(arret->second->getVoyageId()).getLigne();
+                    auto ligne2 = p_gtfs.getLignes().at(ligne2_id).getNumero();
+                    unsigned int poids = distanceDestination / vitesseDeMarche * 3600;
+                    m_leGraphe.ajouterArc(j, m_sommetDestination, poids);
+                    m_sommetsVersDestination.push_back(j);
+                    m_nbArcsStationsVersDestination++;
                 }
             }
-            for (auto itLignePoids = map_LignePoids.begin();itLignePoids != map_LignePoids.end(); itLignePoids++) {
-                string ligneId = itLignePoids->first;
-                unsigned int poidsSecondes = itLignePoids->second;
-                Arret::Ptr arret = map_LigneArretPtr[ligneId];
-                m_leGraphe.ajouterArc(m_sommetOrigine,
-                                      m_sommetDeArret[arret],
-                                      poidsSecondes);
-                m_nbArcsOrigineVersStations++;
-            }
-        }
-        for(auto pairStationPoids : vector_Destination_StationPotentiellePoids){
-            Station station = pairStationPoids.first;
-            for (   auto itHeureArret = station.getArrets().begin(); itHeureArret != station.getArrets().end(); itHeureArret++){
-                Arret::Ptr arretPtr = itHeureArret->second;
-                unsigned int poidsSecondesToDestination = pairStationPoids.second;
-                m_leGraphe.ajouterArc(m_sommetDeArret[itHeureArret->second],
-                                      m_sommetDestination,
-                                      poidsSecondesToDestination);
 
-                m_sommetsVersDestination.push_back(m_sommetDeArret[itHeureArret->second]);
-                m_nbArcsStationsVersDestination++;
-            }
+
         }
-        m_origine_dest_ajoute=true;
+        m_origine_dest_ajoute = true;
     }
-    catch (...){
-        throw logic_error(
-                "ReseauGTFS::ajouterArcsOrigineDestination(): une erreur s'est produite.");
+    catch (exception e){
+        throw logic_error("ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const Coordonnees &p_pointOrigine, const Coordonnees &p_pointDestination)");
     }
 }
 
@@ -272,23 +208,31 @@ void ReseauGTFS::ajouterArcsOrigineDestination(const DonneesGTFS &p_gtfs, const 
 void ReseauGTFS::enleverArcsOrigineDestination()
 {
     try {
-        for (auto sommet : m_sommetsVersDestination) {
-            m_leGraphe.enleverArc(sommet, m_sommetDestination);
+        for (size_t &j:m_sommetsVersDestination) {
+            m_leGraphe.enleverArc(j, m_sommetDestination);
         }
-        m_leGraphe.resize(m_leGraphe.getNbSommets() - 2);
-        Arret::Ptr origine = m_arretDuSommet[m_sommetOrigine];
-        Arret::Ptr destination = m_arretDuSommet[m_sommetDestination];
+
+        size_t graphSize = m_arretDuSommet.size() - 2;
+        m_leGraphe.resize(graphSize);
+
+        Arret::Ptr origine = m_arretDuSommet.at(m_sommetOrigine);
+        Arret::Ptr dest = m_arretDuSommet.at(m_sommetDestination);
+
         m_sommetDeArret.erase(origine);
-        m_sommetDeArret.erase(destination);
-        m_arretDuSommet.pop_back();
-        m_arretDuSommet.pop_back();
-        m_nbArcsStationsVersDestination = 0;
+        m_sommetDeArret.erase(dest);
+
+        m_arretDuSommet.erase(m_arretDuSommet.begin() + m_sommetDestination);
+        m_arretDuSommet.erase(m_arretDuSommet.begin() + m_sommetOrigine);
+
         m_nbArcsOrigineVersStations = 0;
+        m_nbArcsStationsVersDestination = 0;
+
+        m_sommetsVersDestination.clear();
+
         m_origine_dest_ajoute = false;
     }
-    catch(...){
-        throw logic_error(
-                "ReseauGTFS::enleverArcsOrigineDestination(): une erreur s'est produite.");
+    catch(exception e){
+        throw logic_error("ReseauGTFS::enleverArcsOrgineDestination(): Incohérence détectée.");
     }
 }
 
