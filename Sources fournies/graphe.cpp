@@ -139,7 +139,8 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));//change if possible
 
     size_t sommet;
-    unsigned int plusPetiteDistanceTrouvee;
+    //c'est la distance du sommet actuel plus la distance vers le prochain sommet
+    unsigned int distanceMinimePotentielle;
 
     //Tant que notre map distance Noaud n'est pas vide
     while (!mapDistanceNoeud.empty())
@@ -152,48 +153,55 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
         if (sommet == p_destination) break;
 
         //on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
-        //mais l'info est encore dans sommet
+        //mais l'info est encore dans la variable sommet
         mapDistanceNoeud.erase(mapDistanceNoeud.begin());
 
         //on itere grace a la liste d'adjacence du noeud actuel
-        //m_listesAdj est un vector<list<Arc>>, donc on itere sur des arcs non
+        //m_listesAdj est un vector<list<Arc>>, donc on itere sur les arcs directs du noeud, non tries
 
-         for (auto u_itr = m_listesAdj[sommet].begin(); u_itr != m_listesAdj[sommet].end(); ++u_itr)
+         for (auto sommetAdjacent = m_listesAdj[sommet].begin(); sommetAdjacent != m_listesAdj[sommet].end(); ++sommetAdjacent)
         {
-            plusPetiteDistanceTrouvee = distance[sommet] + u_itr->poids;
-            if (plusPetiteDistanceTrouvee < distance[u_itr->destination])
+            //distance totale vers le prochain sommet
+            distanceMinimePotentielle = distance[sommet] + sommetAdjacent->poids;
+
+            //si on trouve une plus petite distance que celle trouvee auparavant (obligatoire a la decouverte du noeud)
+            if (distanceMinimePotentielle < distance[sommetAdjacent->destination])
             {
-                distance[u_itr->destination] = plusPetiteDistanceTrouvee;
-                predecesseur[u_itr->destination] = sommet;
-                mapDistanceNoeud.insert(pair<unsigned int , size_t>(plusPetiteDistanceTrouvee,u_itr->destination));
+                //on met la nouvelle distance plus petite dans le prochain sommet
+                distance[sommetAdjacent->destination] = distanceMinimePotentielle;
+                //on met le nouveau predecesseur
+                predecesseur[sommetAdjacent->destination] = sommet;
+                //On mettra le nouveau noeud dans la map pour trouver des potentiels plus petits chemins avec la nouvelle valeur
+                mapDistanceNoeud.insert(pair<unsigned int , size_t>(distanceMinimePotentielle,sommetAdjacent->destination));
             }
         }
     }
-    //cas où l'on n'a pas de solution
+
+    //Si pas de solution
     if (predecesseur[p_destination] == numeric_limits<unsigned int>::max())
     {
         p_chemin.push_back(p_destination);
         return numeric_limits<unsigned int>::max();
     }
 
+    //On refera le chemin a partir du dernier chemin avec une pile
     stack<size_t> pileDuChemin;
-    size_t numero = p_destination;
-    pileDuChemin.push(numero);
-    while (predecesseur[numero] != numeric_limits<size_t>::max())
+    size_t sommetActuel = p_destination;
+    //on met la destination
+    pileDuChemin.push(sommetActuel);
+
+    //tant qu'il y a un predecesseur, on l'ajoute dans la pile
+    while (predecesseur[sommetActuel] != numeric_limits<size_t>::max())
     {
-        numero = predecesseur[numero];
-        pileDuChemin.push(numero);
+        sommetActuel = predecesseur[sommetActuel];
+        pileDuChemin.push(sommetActuel);
     }
+    //on vide la pile dans le chemin dans le bon ordre
     while (!pileDuChemin.empty())
     {
-        size_t temp = pileDuChemin.top();
-        p_chemin.push_back(temp);
+        p_chemin.push_back(pileDuChemin.top());
         pileDuChemin.pop();
     }
+    //on retourne la distance de la destination
     return distance[p_destination];
-}
-
-bool Graphe::compare_nocase (const Arc& first, const Arc& second)
-{
-    return (first.poids < second.poids);
 }

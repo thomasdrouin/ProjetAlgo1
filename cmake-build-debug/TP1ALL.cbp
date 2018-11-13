@@ -198,9 +198,6 @@
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/outDeBase.txt">
-			<Option target="TP1ALL"/>
-		</Unit>
 		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
