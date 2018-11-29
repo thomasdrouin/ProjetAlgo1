@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies" 
+CXX_INCLUDES = -I"/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies" 
 
