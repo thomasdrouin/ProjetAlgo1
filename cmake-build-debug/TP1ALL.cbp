@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug"/>
+				<Option working_dir="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug"/>
+				<Option working_dir="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug"/>
+				<Option working_dir="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TP1ALL">
-				<Option output="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/TP1ALL" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug"/>
+				<Option output="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/TP1ALL" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies"/>
+					<Add directory="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
@@ -54,20 +54,20 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP1ALL"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP1ALL"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TP1ALL/fast">
-				<Option output="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/TP1ALL" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug"/>
+				<Option output="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/TP1ALL" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies"/>
+					<Add directory="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
@@ -77,128 +77,128 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP1ALL/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/Desktop/TP1ALL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP1ALL/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/Horaire_Boucle_Partage.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/Horaire_Boucle_Partage.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/__licence.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/__licence.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/__lisez-moi.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/__lisez-moi.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/agency.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/agency.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/calendar_dates.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/calendar_dates.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/feed_info.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/feed_info.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/routes.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/routes.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/shapes.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/shapes.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/stop_times.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/stop_times.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/stops.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/stops.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/transfers.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/transfers.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/RTC-1aout-30nov/trips.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/RTC-1aout-30nov/trips.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/CMakeLists.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/CMakeLists.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/DonneesGTFS.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ReseauGTFS.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/arret.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/auxiliaires.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/cmake-build-debug/CMakeCache.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/cmake-build-debug/CMakeCache.txt">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/cmake-build-debug/Makefile">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/cmake-build-debug/Makefile">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/cmake-build-debug/TP1">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/cmake-build-debug/TP1">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/cmake-build-debug/TP1.cbp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/cmake-build-debug/TP1.cbp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/cmake-build-debug/cmake_install.cmake">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/cmake-build-debug/cmake_install.cmake">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/coordonnees.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/graphe.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/graphe.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/graphe.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/libTP1.a">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/libTP1.a">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ligne.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/ligne.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ligne.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/main.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/main.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/station.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/station.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/station.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.cpp">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/voyage.cpp">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/Sources fournies/voyage.h">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/voyage.h">
 			<Option target="TP1ALL"/>
 		</Unit>
-		<Unit filename="/Users/thomasdrouin/Desktop/TP1ALL/CMakeLists.txt">
+		<Unit filename="/Users/thomasdrouin/CLionProjects/ProjetAlgo1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
