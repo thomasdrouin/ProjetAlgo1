@@ -142,7 +142,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=TP1ALL
+CMAKE_PROJECT_NAME:STATIC=ProjetAlgo1
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -205,6 +205,12 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
+
+//Value Computed by CMake
+ProjetAlgo1_BINARY_DIR:STATIC=/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug
+
+//Value Computed by CMake
+ProjetAlgo1_SOURCE_DIR:STATIC=/Users/thomasdrouin/CLionProjects/ProjetAlgo1
 
 //Value Computed by CMake
 TP1ALL_BINARY_DIR:STATIC=/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug

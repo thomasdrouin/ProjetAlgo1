@@ -65,39 +65,39 @@ CMAKE_SOURCE_DIR = /Users/thomasdrouin/CLionProjects/ProjetAlgo1
 CMAKE_BINARY_DIR = /Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/TP1ALL.dir
+# Target rules for target CMakeFiles/ProjetAlgo1.dir
 
 # All Build rule for target.
-CMakeFiles/TP1ALL.dir/all:
-	$(MAKE) -f CMakeFiles/TP1ALL.dir/build.make CMakeFiles/TP1ALL.dir/depend
-	$(MAKE) -f CMakeFiles/TP1ALL.dir/build.make CMakeFiles/TP1ALL.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target TP1ALL"
-.PHONY : CMakeFiles/TP1ALL.dir/all
+CMakeFiles/ProjetAlgo1.dir/all:
+	$(MAKE) -f CMakeFiles/ProjetAlgo1.dir/build.make CMakeFiles/ProjetAlgo1.dir/depend
+	$(MAKE) -f CMakeFiles/ProjetAlgo1.dir/build.make CMakeFiles/ProjetAlgo1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target ProjetAlgo1"
+.PHONY : CMakeFiles/ProjetAlgo1.dir/all
 
 # Include target in all.
-all: CMakeFiles/TP1ALL.dir/all
+all: CMakeFiles/ProjetAlgo1.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/TP1ALL.dir/rule: cmake_check_build_system
+CMakeFiles/ProjetAlgo1.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/CMakeFiles 11
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TP1ALL.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ProjetAlgo1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thomasdrouin/CLionProjects/ProjetAlgo1/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/TP1ALL.dir/rule
+.PHONY : CMakeFiles/ProjetAlgo1.dir/rule
 
 # Convenience name for target.
-TP1ALL: CMakeFiles/TP1ALL.dir/rule
+ProjetAlgo1: CMakeFiles/ProjetAlgo1.dir/rule
 
-.PHONY : TP1ALL
-
-# clean rule for target.
-CMakeFiles/TP1ALL.dir/clean:
-	$(MAKE) -f CMakeFiles/TP1ALL.dir/build.make CMakeFiles/TP1ALL.dir/clean
-.PHONY : CMakeFiles/TP1ALL.dir/clean
+.PHONY : ProjetAlgo1
 
 # clean rule for target.
-clean: CMakeFiles/TP1ALL.dir/clean
+CMakeFiles/ProjetAlgo1.dir/clean:
+	$(MAKE) -f CMakeFiles/ProjetAlgo1.dir/build.make CMakeFiles/ProjetAlgo1.dir/clean
+.PHONY : CMakeFiles/ProjetAlgo1.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/ProjetAlgo1.dir/clean
 
 .PHONY : clean
 

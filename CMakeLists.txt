@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
-project(TP1ALL)
+project(ProjetAlgo1)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories("Sources fournies")
 
-add_executable(TP1ALL
+add_executable(ProjetAlgo1
         RTC-1aout-30nov/__licence.txt
         RTC-1aout-30nov/__lisez-moi.txt
         RTC-1aout-30nov/agency.txt

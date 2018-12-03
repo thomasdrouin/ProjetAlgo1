@@ -90,8 +90,8 @@ int main()
 
         if(i==0)
         {
-            stationIdOrigine=2909;
-            stationIdDestination=1713;
+            stationIdOrigine=6171;
+            stationIdDestination=5478;
             pointOrigine = stations.at(stationIdOrigine).getCoords();
             pointDestination = stations.at(stationIdDestination).getCoords();
         }
