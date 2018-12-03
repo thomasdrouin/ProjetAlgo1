@@ -155,7 +155,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     while (!heap.empty())
     {
         //on itere sur le heap des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
-        //ici, on sort le sommet de la map avant de peut-etre l'effacer
+        //ici, on sort le sommet du heap avec la distance la plus faible
         sommet = heap.top().second;
 
         //si le sommet actuel correspond a la destination, on peut arreter
