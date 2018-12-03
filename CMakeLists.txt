@@ -45,3 +45,5 @@ add_executable(TP1ALL
         "Sources fournies/voyage.cpp"
         "Sources fournies/voyage.h"
         )
+set(CMAKE_CXX_FLAGS "-O3")
+

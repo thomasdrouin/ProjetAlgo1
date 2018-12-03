@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.cpp
-DonneesGTFS.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.h
-
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.h
 string
 -
@@ -40,29 +36,15 @@ arret.h
 coordonnees.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.h
 
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.cpp
-ReseauGTFS.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.h
-sys/time.h
--
-
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.h
 DonneesGTFS.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/DonneesGTFS.h
 graphe.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/graphe.h
 
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.cpp
-arret.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.h
-
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.h
 memory
 -
-auxiliaires.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.h
-
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.cpp
 auxiliaires.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.h
 
@@ -83,10 +65,6 @@ unordered_set
 -
 algorithm
 -
-
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.cpp
-coordonnees.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.h
 
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/coordonnees.h
 cmath
@@ -126,10 +104,6 @@ algorithm
 memory
 -
 
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ligne.cpp
-ligne.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ligne.h
-
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ligne.h
 string
 -
@@ -152,10 +126,6 @@ DonneesGTFS.h
 ReseauGTFS.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/ReseauGTFS.h
 
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/station.cpp
-station.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/station.h
-
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/station.h
 string
 -
@@ -173,10 +143,6 @@ arret.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/arret.h
 auxiliaires.h
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/auxiliaires.h
-
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/voyage.cpp
-voyage.h
-/Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/voyage.h
 
 /Users/thomasdrouin/CLionProjects/ProjetAlgo1/Sources fournies/voyage.h
 string
