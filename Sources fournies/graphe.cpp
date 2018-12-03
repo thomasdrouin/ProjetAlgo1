@@ -132,9 +132,9 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
 
     //Comparateur de distances des pairs dans la heap
     struct CompareByFirst {
-        constexpr bool operator()(pair<int, size_t> const & a,
-                                  pair<int, size_t> const & b) const noexcept
-        { return a.first < b.first; }
+        constexpr bool operator()(pair<unsigned int, size_t> const & a,
+                                  pair<unsigned int, size_t> const & b) const noexcept
+        { return a.first > b.first; }
     };
 
     std::priority_queue<	std::pair<unsigned int, size_t>,
@@ -151,7 +151,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     //c'est la distance du sommet actuel plus la distance vers le prochain sommet
     unsigned int distanceMinimePotentielle;
 
-    //Tant que notre map distance Noaud n'est pas vide
+    //Tant que notre heap distance Noaud n'est pas vide
     while (!heap.empty())
     {
         //on itere sur le heap des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
@@ -168,20 +168,20 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
         //on itere grace a la liste d'adjacence du noeud actuel
         //m_listesAdj est un vector<list<Arc>>, donc on itere sur les arcs directs du noeud, non tries
 
-        for (auto sommetAdjacent = m_listesAdj[sommet].begin(); sommetAdjacent != m_listesAdj[sommet].end(); ++sommetAdjacent)
+        for (auto arc = m_listesAdj[sommet].begin(); arc != m_listesAdj[sommet].end(); ++arc)
         {
             //distance totale vers le prochain sommet
-            distanceMinimePotentielle = distance[sommet] + sommetAdjacent->poids;
+            distanceMinimePotentielle = distance[sommet] + arc->poids;
 
             //si on trouve une plus petite distance que celle trouvee auparavant (obligatoire a la decouverte du noeud)
-            if (distanceMinimePotentielle < distance[sommetAdjacent->destination])
+            if (distanceMinimePotentielle < distance[arc->destination])
             {
                 //on met la nouvelle distance plus petite dans le prochain sommet
-                distance[sommetAdjacent->destination] = distanceMinimePotentielle;
+                distance[arc->destination] = distanceMinimePotentielle;
                 //on met le nouveau predecesseur
-                predecesseur[sommetAdjacent->destination] = sommet;
+                predecesseur[arc->destination] = sommet;
                 //On mettra le nouveau noeud dans le heap pour trouver des potentiels plus petits chemins avec la nouvelle valeur
-                heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,sommetAdjacent->destination));
+                heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,arc->destination));
             }
         }
     }

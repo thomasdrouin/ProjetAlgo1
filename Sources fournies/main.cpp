@@ -88,6 +88,14 @@ int main()
             pointDestination = stations.at(stationIdDestination).getCoords();
         }
 
+        if(i==0)
+        {
+            stationIdOrigine=2909;
+            stationIdDestination=1713;
+            pointOrigine = stations.at(stationIdOrigine).getCoords();
+            pointDestination = stations.at(stationIdDestination).getCoords();
+        }
+
         cout << "station du point origine = " << stations.at(stationIdOrigine) << endl;
         cout << "station du point destination = " << stations.at(stationIdDestination) << endl;
         cout << "distance = " << pointOrigine - pointDestination << " kilomètres" << endl;
