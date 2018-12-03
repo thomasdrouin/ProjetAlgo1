@@ -159,7 +159,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
         sommet = heap.top().second;
 
         //si le sommet actuel correspond a la destination, on peut arreter
-        if (sommet == p_destination) break;
+        //if (sommet == p_destination) break;
 
         //sinon on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
         //mais l'info est encore dans la variable sommet
@@ -194,7 +194,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     }
 
     //On met tous les predecesseurs dans le chemin a partir de la fin
-    size_t sommetActuel = heap.top().second;
+    size_t sommetActuel = p_destination;
     while(predecesseur[sommetActuel] != p_origine)
     {
         p_chemin.push_back(sommetActuel);

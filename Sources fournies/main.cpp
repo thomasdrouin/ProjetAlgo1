@@ -66,7 +66,7 @@ int main()
     }
 
     bool afficherItineraire = true;
-    const unsigned int nbDeTests = 10; //nombre de tests à effectuer
+    const unsigned int nbDeTests = 100; //nombre de tests à effectuer
     long moy_tempsExecution = 0;
 
     unsigned int nbDeTestsComptabilises = 0;
@@ -90,8 +90,8 @@ int main()
 
         if(i==0)
         {
-            stationIdOrigine=2909;
-            stationIdDestination=1713;
+            stationIdOrigine=6171;
+            stationIdDestination=5478;
             pointOrigine = stations.at(stationIdOrigine).getCoords();
             pointDestination = stations.at(stationIdDestination).getCoords();
         }
@@ -129,5 +129,3 @@ int main()
 
     return 0;
 }
-
-
