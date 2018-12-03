@@ -193,24 +193,16 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
         return numeric_limits<unsigned int>::max();
     }
 
-    //On refera le chemin a partir du dernier chemin avec une pile
-    stack<size_t> pileDuChemin;
-    size_t sommetActuel = p_destination;
-    //on met la destination
-    pileDuChemin.push(sommetActuel);
-
-    //tant qu'il y a un predecesseur, on l'ajoute dans la pile
-    while (predecesseur[sommetActuel] != numeric_limits<size_t>::max())
+    //On met tous les predecesseurs dans le chemin a partir de la fin
+    size_t sommetActuel = heap.top().second;
+    while(predecesseur[sommetActuel] != p_origine)
     {
+        p_chemin.push_back(sommetActuel);
         sommetActuel = predecesseur[sommetActuel];
-        pileDuChemin.push(sommetActuel);
     }
-    //on vide la pile dans le chemin dans le bon ordre
-    while (!pileDuChemin.empty())
-    {
-        p_chemin.push_back(pileDuChemin.top());
-        pileDuChemin.pop();
-    }
+    p_chemin.push_back(p_origine);
+    reverse(p_chemin.begin(), p_chemin.end());
+
     //on retourne la distance de la destination
     return distance[p_destination];
 }
