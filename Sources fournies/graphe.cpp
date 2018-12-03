@@ -187,7 +187,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     }
 
     //Si pas de solution
-    if (predecesseur[p_destination] == numeric_limits<unsigned int>::max())
+    if (predecesseur[p_destination] == numeric_limits<size_t >::max())
     {
         p_chemin.push_back(p_destination);
         return numeric_limits<unsigned int>::max();
