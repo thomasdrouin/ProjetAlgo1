@@ -128,38 +128,47 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
 
     vector<unsigned int> distance(m_listesAdj.size(), numeric_limits<unsigned int>::max());
     vector<size_t> predecesseur(m_listesAdj.size(), numeric_limits<size_t>::max());
+    size_t sommet;
 
-    //multimap de toutes les distances et du sommet actuel
-    multimap<unsigned int, size_t> mapDistanceNoeud ;
+    //Comparateur de distances des pairs dans la heap
+    struct CompareByFirst {
+        constexpr bool operator()(pair<int, size_t> const & a,
+                                  pair<int, size_t> const & b) const noexcept
+        { return a.first < b.first; }
+    };
+
+    std::priority_queue<	std::pair<unsigned int, size_t>,
+            std::vector<std::pair<unsigned int, size_t>>,
+            CompareByFirst
+    > heap;
 
     //distance de depart
     distance[p_origine] = 0;
 
     //On met la distance 0 de depart avec le point d'origine
-    mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));//change if possible
+    heap.push(pair<unsigned int, size_t>(distance[p_origine],p_origine));
 
-    size_t sommet;
     //c'est la distance du sommet actuel plus la distance vers le prochain sommet
     unsigned int distanceMinimePotentielle;
 
     //Tant que notre map distance Noaud n'est pas vide
-    while (!mapDistanceNoeud.empty())
+    while (!heap.empty())
     {
-        //on itere sur la map des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
+        //on itere sur le heap des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
         //ici, on sort le sommet de la map avant de peut-etre l'effacer
-        sommet = mapDistanceNoeud.begin()->second;
+        sommet = heap.top().second;
 
         //si le sommet actuel correspond a la destination, on peut arreter
         if (sommet == p_destination) break;
 
-        //on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
+        //sinon on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
         //mais l'info est encore dans la variable sommet
-        mapDistanceNoeud.erase(mapDistanceNoeud.begin());
+        heap.pop();
 
         //on itere grace a la liste d'adjacence du noeud actuel
         //m_listesAdj est un vector<list<Arc>>, donc on itere sur les arcs directs du noeud, non tries
 
-         for (auto sommetAdjacent = m_listesAdj[sommet].begin(); sommetAdjacent != m_listesAdj[sommet].end(); ++sommetAdjacent)
+        for (auto sommetAdjacent = m_listesAdj[sommet].begin(); sommetAdjacent != m_listesAdj[sommet].end(); ++sommetAdjacent)
         {
             //distance totale vers le prochain sommet
             distanceMinimePotentielle = distance[sommet] + sommetAdjacent->poids;
@@ -171,8 +180,8 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
                 distance[sommetAdjacent->destination] = distanceMinimePotentielle;
                 //on met le nouveau predecesseur
                 predecesseur[sommetAdjacent->destination] = sommet;
-                //On mettra le nouveau noeud dans la map pour trouver des potentiels plus petits chemins avec la nouvelle valeur
-                mapDistanceNoeud.insert(pair<unsigned int , size_t>(distanceMinimePotentielle,sommetAdjacent->destination));
+                //On mettra le nouveau noeud dans le heap pour trouver des potentiels plus petits chemins avec la nouvelle valeur
+                heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,sommetAdjacent->destination));
             }
         }
     }
