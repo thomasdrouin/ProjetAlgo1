@@ -128,80 +128,81 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
 
     vector<unsigned int> distance(m_listesAdj.size(), numeric_limits<unsigned int>::max());
     vector<size_t> predecesseur(m_listesAdj.size(), numeric_limits<size_t>::max());
+    size_t sommet;
 
-    //multimap de toutes les distances et du sommet actuel
-    multimap<unsigned int, size_t> mapDistanceNoeud ;
+    //Comparateur de distances des pairs dans la heap
+    struct CompareByFirst {
+        constexpr bool operator()(pair<unsigned int, size_t> const & a,
+                                  pair<unsigned int, size_t> const & b) const noexcept
+        { return a.first > b.first; }
+    };
+
+    std::priority_queue<	std::pair<unsigned int, size_t>,
+            std::vector<std::pair<unsigned int, size_t>>,
+            CompareByFirst
+    > heap;
 
     //distance de depart
     distance[p_origine] = 0;
 
     //On met la distance 0 de depart avec le point d'origine
-    mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));//change if possible
+    heap.push(pair<unsigned int, size_t>(distance[p_origine],p_origine));
 
-    size_t sommet;
     //c'est la distance du sommet actuel plus la distance vers le prochain sommet
     unsigned int distanceMinimePotentielle;
 
-    //Tant que notre map distance Noaud n'est pas vide
-    while (!mapDistanceNoeud.empty())
+    //Tant que notre heap distance Noaud n'est pas vide
+    while (!heap.empty())
     {
-        //on itere sur la map des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
-        //ici, on sort le sommet de la map avant de peut-etre l'effacer
-        sommet = mapDistanceNoeud.begin()->second;
+        //on itere sur le heap des noeuds, tout en pouvant ajouter des noeuds en faisant de la recursion
+        //ici, on sort le sommet du heap avec la distance la plus faible
+        sommet = heap.top().second;
 
         //si le sommet actuel correspond a la destination, on peut arreter
         if (sommet == p_destination) break;
 
-        //on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
+        //sinon on enleve le noeud actuel de la map, car on sait que ce n'est pas un chemin final,
         //mais l'info est encore dans la variable sommet
-        mapDistanceNoeud.erase(mapDistanceNoeud.begin());
+        heap.pop();
 
         //on itere grace a la liste d'adjacence du noeud actuel
         //m_listesAdj est un vector<list<Arc>>, donc on itere sur les arcs directs du noeud, non tries
 
-         for (auto sommetAdjacent = m_listesAdj[sommet].begin(); sommetAdjacent != m_listesAdj[sommet].end(); ++sommetAdjacent)
+        for (auto arc = m_listesAdj[sommet].begin(); arc != m_listesAdj[sommet].end(); ++arc)
         {
             //distance totale vers le prochain sommet
-            distanceMinimePotentielle = distance[sommet] + sommetAdjacent->poids;
+            distanceMinimePotentielle = distance[sommet] + arc->poids;
 
             //si on trouve une plus petite distance que celle trouvee auparavant (obligatoire a la decouverte du noeud)
-            if (distanceMinimePotentielle < distance[sommetAdjacent->destination])
+            if (distanceMinimePotentielle < distance[arc->destination])
             {
                 //on met la nouvelle distance plus petite dans le prochain sommet
-                distance[sommetAdjacent->destination] = distanceMinimePotentielle;
+                distance[arc->destination] = distanceMinimePotentielle;
                 //on met le nouveau predecesseur
-                predecesseur[sommetAdjacent->destination] = sommet;
-                //On mettra le nouveau noeud dans la map pour trouver des potentiels plus petits chemins avec la nouvelle valeur
-                mapDistanceNoeud.insert(pair<unsigned int , size_t>(distanceMinimePotentielle,sommetAdjacent->destination));
+                predecesseur[arc->destination] = sommet;
+                //On mettra le nouveau noeud dans le heap pour trouver des potentiels plus petits chemins avec la nouvelle valeur
+                heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,arc->destination));
             }
         }
     }
 
     //Si pas de solution
-    if (predecesseur[p_destination] == numeric_limits<unsigned int>::max())
+    if (predecesseur[p_destination] == numeric_limits<size_t >::max())
     {
         p_chemin.push_back(p_destination);
         return numeric_limits<unsigned int>::max();
     }
 
-    //On refera le chemin a partir du dernier chemin avec une pile
-    stack<size_t> pileDuChemin;
+    //On met tous les predecesseurs dans le chemin a partir de la fin
     size_t sommetActuel = p_destination;
-    //on met la destination
-    pileDuChemin.push(sommetActuel);
-
-    //tant qu'il y a un predecesseur, on l'ajoute dans la pile
-    while (predecesseur[sommetActuel] != numeric_limits<size_t>::max())
+    while(predecesseur[sommetActuel] != p_origine)
     {
+        p_chemin.push_back(sommetActuel);
         sommetActuel = predecesseur[sommetActuel];
-        pileDuChemin.push(sommetActuel);
     }
-    //on vide la pile dans le chemin dans le bon ordre
-    while (!pileDuChemin.empty())
-    {
-        p_chemin.push_back(pileDuChemin.top());
-        pileDuChemin.pop();
-    }
+    p_chemin.push_back(p_origine);
+    reverse(p_chemin.begin(), p_chemin.end());
+
     //on retourne la distance de la destination
     return distance[p_destination];
 }

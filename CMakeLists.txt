@@ -45,5 +45,4 @@ add_executable(ProjetAlgo1
         "Sources fournies/voyage.cpp"
         "Sources fournies/voyage.h"
         )
-set(CMAKE_CXX_FLAGS "-O3")
-
+set (CMAKE_CXX_FLAGS "-O3")
