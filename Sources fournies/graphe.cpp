@@ -106,6 +106,33 @@ unsigned int Graphe::getPoids(size_t i, size_t j) const
     throw logic_error("Graphe::getPoids(): l'arc(i,j) est inexistant");
 }
 
+//Comparateur de distances des pairs dans la heap
+struct CompareByFirst {
+    constexpr bool operator()(pair<unsigned int, size_t> const & a,
+                              pair<unsigned int, size_t> const & b) const
+    { return a.first > b.first; }
+};
+
+//replace node in
+std::priority_queue<std::pair<unsigned int, size_t>, std::vector<std::pair<unsigned int, size_t>>, CompareByFirst> replaceInHeap
+        (std::priority_queue<std::pair<unsigned int, size_t>, std::vector<std::pair<unsigned int, size_t>>, CompareByFirst> heapToChange,
+         size_t sommetEnDouble,
+         unsigned int newDistance){
+    std::priority_queue<std::pair<unsigned int, size_t>, std::vector<std::pair<unsigned int, size_t>>, CompareByFirst> newHeap;
+    size_t sommetActuel;
+    while(!heapToChange.empty()){
+        sommetActuel = heapToChange.top().second;
+        heapToChange.pop();
+        if(sommetEnDouble == sommetActuel){
+            newHeap.push(pair<unsigned int , size_t>(newDistance, sommetActuel));
+        }
+        else{
+            newHeap.push(heapToChange.top());
+        }
+    }
+    return newHeap;
+}
+
 
 //! \brief Algorithme de Dijkstra permettant de trouver le plus court chemin entre p_origine et p_destination
 //! \pre p_origine et p_destination doivent être des sommets du graphe
@@ -128,16 +155,12 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
 
     vector<unsigned int> distance(m_listesAdj.size(), numeric_limits<unsigned int>::max());
     vector<size_t> predecesseur(m_listesAdj.size(), numeric_limits<size_t>::max());
+    vector<bool> alreadyInHeap(m_listesAdj.size(), false);
     size_t sommet;
 
-    //Comparateur de distances des pairs dans la heap
-    struct CompareByFirst {
-        constexpr bool operator()(pair<unsigned int, size_t> const & a,
-                                  pair<unsigned int, size_t> const & b) const noexcept
-        { return a.first > b.first; }
-    };
 
-    std::priority_queue<	std::pair<unsigned int, size_t>,
+    std::priority_queue<
+            std::pair<unsigned int, size_t>,
             std::vector<std::pair<unsigned int, size_t>>,
             CompareByFirst
     > heap;
@@ -168,7 +191,7 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
         //on itere grace a la liste d'adjacence du noeud actuel
         //m_listesAdj est un vector<list<Arc>>, donc on itere sur les arcs directs du noeud, non tries
 
-        for (auto arc = m_listesAdj[sommet].begin(); arc != m_listesAdj[sommet].end(); ++arc)
+        for (auto arc = m_listesAdj[sommet].begin(); arc != m_listesAdj[sommet].end(); arc++)
         {
             //distance totale vers le prochain sommet
             distanceMinimePotentielle = distance[sommet] + arc->poids;
@@ -181,7 +204,14 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
                 //on met le nouveau predecesseur
                 predecesseur[arc->destination] = sommet;
                 //On mettra le nouveau noeud dans le heap pour trouver des potentiels plus petits chemins avec la nouvelle valeur
-                heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,arc->destination));
+                if(!alreadyInHeap[arc->destination])
+                {
+                    heap.push(pair<unsigned int , size_t>(distanceMinimePotentielle,arc->destination));
+                    alreadyInHeap[arc->destination] = true;
+
+                } else{
+                    heap = replaceInHeap(heap, arc->destination, distanceMinimePotentielle);
+                }
             }
         }
     }
