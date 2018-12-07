@@ -130,13 +130,13 @@ unsigned int Graphe::plusCourtChemin(size_t p_origine, size_t p_destination, std
     vector<size_t> predecesseur(m_listesAdj.size(), numeric_limits<size_t>::max());
 
     //multimap de toutes les distances et du sommet actuel
-    multimap<unsigned int, size_t> mapDistanceNoeud ;
+    multimap<unsigned int, size_t, std::greater<unsigned int>> mapDistanceNoeud ;
 
     //distance de depart
     distance[p_origine] = 0;
 
     //On met la distance 0 de depart avec le point d'origine
-    mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));//change if possible
+    mapDistanceNoeud.insert(pair<unsigned int, size_t>(distance[p_origine],p_origine));
 
     size_t sommet;
     //c'est la distance du sommet actuel plus la distance vers le prochain sommet
